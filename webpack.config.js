@@ -19,6 +19,10 @@ module.exports = {
 			}
 		]
 	},
+	// Allow requesting urls from browser
+	devServer: {
+		historyApiFallback: true
+	},
 	plugins: [new HTMLWebpackPlugin(
 		{template: 'app/index.html'}
 	)]

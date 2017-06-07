@@ -19,8 +19,11 @@ class SearchBox extends React.Component {
 		// 	.then(function (result) {
 		// 		console.log(result);
 		// 	});
+		var city = this.state.address;
 
-		api.getCurrentWeather(this.state.address)
+		this.props.onSubmitButton(city);
+
+		api.getCurrentWeather(city)
 			.then(function (result) {
 				console.log(result);
 			});
@@ -65,7 +68,8 @@ class SearchBox extends React.Component {
 }
 
 SearchBox.propTypes = {
-	direction: PropTypes.string.isRequired
+	direction: PropTypes.string.isRequired,
+	onSubmitButton: PropTypes.func.isRequired
 };
 
 SearchBox.defaultProps = {
