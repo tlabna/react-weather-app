@@ -76,3 +76,8 @@ body {
 	padding         : 6px 12px;
 	white-space     : nowrap
 }
+
+.loading {
+	font-size : 35px;
+	text-align: center;
+}

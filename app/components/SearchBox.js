@@ -1,13 +1,12 @@
 var React = require('react');
 var PropTypes = require('prop-types');
-var api = require('../utils/api');
 
 class SearchBox extends React.Component {
 	constructor (props) {
 		super(props);
 
 		this.state = {
-			address: ''
+			city: ''
 		};
 
 		this.handleUpdateAddress = this.handleUpdateAddress.bind(this);
@@ -15,32 +14,23 @@ class SearchBox extends React.Component {
 	}
 
 	handleSubmitAddress () {
-		// api.getForecastData(this.state.address)
-		// 	.then(function (result) {
-		// 		console.log(result);
-		// 	});
-		var city = this.state.address;
+		var {city} = this.state;
 
 		this.props.onSubmitButton(city);
 
-		api.getCurrentWeather(city)
-			.then(function (result) {
-				console.log(result);
-			});
-
 		this.setState(function () {
 			return {
-				address: ''
+				city: ''
 			};
 		});
 	}
 
 	handleUpdateAddress (event) {
-		var address = event.target.value;
+		var city = event.target.value;
 
 		this.setState(function () {
 			return {
-				address: address
+				city: city
 			};
 		});
 	}
@@ -54,7 +44,7 @@ class SearchBox extends React.Component {
 					placeholder="Montreal, Qc"
 					className="form-control"
 					onChange = {this.handleUpdateAddress}
-					value = {this.state.address}
+					value = {this.state.city}
 				/>
 				<button
 					className="btn"
