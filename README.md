@@ -27,6 +27,7 @@ The application has an input box for users to search for a specific city and the
 4. Install packages needed for project by typing in terminal ``` npm i ```
 5. To view project locally start dev server by typing in terminal ``` npm run start ```
 
+<!--
 ### Build Project ###
 1. After following instructions for setting up the project locally, to build for production, in your terminal type ``` npm run build ```
 2. (Optional) If you wish to host the project online, you can use Firebase as the build tool can automate this for you.
@@ -40,3 +41,4 @@ The application has an input box for users to search for a specific city and the
 	8. Forth question, type **Y** for firebase to configure project as a single page application
 	9. Fifth questions, type **N** to not overwrite dist/index.html
 	10. Firebase should now be initialized, to deploy project to Firebase, in your terminal type ``` npm run deploy ```
+-->
