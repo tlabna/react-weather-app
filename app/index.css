@@ -77,7 +77,45 @@ body {
 	white-space     : nowrap
 }
 
+/* Loading Component */
+
 .loading {
 	font-size : 35px;
 	text-align: center;
+}
+
+/* Forecast Component */
+.forecast-container {
+	align-items    : center;
+	display        : flex;
+	flex-direction : row;
+	flex-wrap      : wrap;
+	justify-content: space-evenly;
+	margin         : 50px auto;
+	max-width      : 1200px;
+}
+
+.dayContainer {
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	justify-content: center;
+	margin         : 35px;
+}
+
+.forecast-header {
+	color      : #333;
+	font-size  : 65px;
+	font-weight: 100;
+	text-align : center;
+}
+
+.subheader {
+	color      : #333;
+	font-size  : 30px;
+	font-weight: 100;
+}
+
+.weather {
+	height: 130px;
 }

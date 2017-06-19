@@ -2,13 +2,36 @@ var React = require('react');
 var queryString = require('query-string');
 var PropTypes = require('prop-types');
 var api = require('../utils/api');
+var utils = require('../utils/helpers');
+var {getDate} = utils;
 var Loading = require('./Loading');
+
+
+function DayItem (props) {
+	var date = getDate(props.day.dt);
+	// eslint-disable-next-line
+	var icon = props.day.weather[0].icon;
+
+	return (
+		<div className="dayContainer">
+			<img className="weather" 
+				src={'./app/images/weather-icons/' + icon + '.svg'} 
+				alt="Weather" />
+			<h2 className="subheader">{date}</h2>
+		</div>
+	);
+}
+
+DayItem.propTypes = {
+	day: PropTypes.object.isRequired
+};
 
 class Forecast extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
 			city: '',
+			forecastData: [],
 			loading: true
 		};
 
@@ -36,13 +59,17 @@ class Forecast extends React.Component {
 	}
 
 	requestWeather(city) {
-		api.getCurrentWeather(city)
+		api.getForecastData(city)
 			// eslint-disable-next-line consistent-return
 			.then(function (results) {
+				var cityData = results.city;
+				var forecastData = results.list;
+
 				setTimeout(function () {
 					this.setState(function () {
 						return {
-							city: results.name,
+							city: cityData.name + ', ' + cityData.country,
+							forecastData: forecastData,
 							loading: false
 						};
 					});
@@ -54,14 +81,23 @@ class Forecast extends React.Component {
 	}
 
 	render() {
-		var {loading} = this.state;
-
-		if (loading === true) {
-			return <Loading />;
-		}
+		var {loading, city, forecastData} = this.state;
 
 		return (
-			<div>Forecast</div>
+			loading === true
+				? <Loading />
+				: <div>
+						<h1 className="forecast-header">{city}</h1>
+							<div className="forecast-container">
+								{forecastData.map(function (listItem) {
+									return (
+										<DayItem 
+											key={listItem.dt} 
+											day={listItem} />	
+									);
+								})}
+							</div>
+					</div>
 		);
 	}
 }
