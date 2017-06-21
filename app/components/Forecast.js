@@ -13,7 +13,9 @@ function DayItem (props) {
 	var icon = props.day.weather[0].icon;
 
 	return (
-		<div className="dayContainer">
+		<div
+			onClick={props.onClick} 
+			className="dayContainer">
 			<img className="weather" 
 				src={'./app/images/weather-icons/' + icon + '.svg'} 
 				alt="Weather" />
@@ -23,7 +25,8 @@ function DayItem (props) {
 }
 
 DayItem.propTypes = {
-	day: PropTypes.object.isRequired
+	day: PropTypes.object.isRequired,
+	onClick: PropTypes.func.isRequired
 };
 
 class Forecast extends React.Component {
@@ -36,6 +39,7 @@ class Forecast extends React.Component {
 		};
 
 		this.requestWeather = this.requestWeather.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
 	componentDidMount() {
@@ -56,6 +60,13 @@ class Forecast extends React.Component {
 		});
 
 		this.requestWeather(city);
+	}
+
+	handleClick(city) {
+		this.props.history.push({
+			pathname: '/details/' + this.state.city,
+			state: city
+		});
 	}
 
 	requestWeather(city) {
@@ -91,11 +102,13 @@ class Forecast extends React.Component {
 							<div className="forecast-container">
 								{forecastData.map(function (listItem) {
 									return (
-										<DayItem 
+										<DayItem
+											onClick={this.handleClick
+												.bind(this, listItem)} 
 											key={listItem.dt} 
 											day={listItem} />	
 									);
-								})}
+								}.bind(this))}
 							</div>
 					</div>
 		);
@@ -103,7 +116,8 @@ class Forecast extends React.Component {
 }
 
 Forecast.propTypes = {
-	location: PropTypes.object.isRequired
+	location: PropTypes.object.isRequired,
+	history: PropTypes.object.isRequired
 };
 
 module.exports = Forecast;
