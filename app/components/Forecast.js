@@ -5,29 +5,7 @@ var api = require('../utils/api');
 var utils = require('../utils/helpers');
 var {getDate} = utils;
 var Loading = require('./Loading');
-
-
-function DayItem (props) {
-	var date = getDate(props.day.dt);
-	// eslint-disable-next-line
-	var icon = props.day.weather[0].icon;
-
-	return (
-		<div
-			onClick={props.onClick} 
-			className="dayContainer">
-			<img className="weather" 
-				src={'./app/images/weather-icons/' + icon + '.svg'} 
-				alt="Weather" />
-			<h2 className="subheader">{date}</h2>
-		</div>
-	);
-}
-
-DayItem.propTypes = {
-	day: PropTypes.object.isRequired,
-	onClick: PropTypes.func.isRequired
-};
+var DayItem = require('./DayItem');
 
 class Forecast extends React.Component {
 	constructor (props) {
@@ -104,9 +82,9 @@ class Forecast extends React.Component {
 									return (
 										<DayItem
 											onClick={this.handleClick
-												.bind(this, listItem)} 
-											key={listItem.dt} 
-											day={listItem} />	
+												.bind(this, listItem)}
+											key={listItem.dt}
+											day={listItem} />
 									);
 								}.bind(this))}
 							</div>

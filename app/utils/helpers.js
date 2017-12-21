@@ -32,5 +32,5 @@ function getDate (timestmap) {
 }
 
 module.exports = {
-	getDate: getDate
+	getDate: getDate,
 };

@@ -5,16 +5,17 @@ module.exports = {
 	entry: './app/index.js',
 	output: {
 		filename: 'index_bundle.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/'
 	},
 	module: {
 		rules: [
 			{
-				test: /\.(js)$/, 
+				test: /\.(js)$/,
 				use: 'babel-loader'
 			},
 			{
-				test: /\.css$/, 
+				test: /\.css$/,
 				use: ['style-loader', 'css-loader']
 			}
 		]
