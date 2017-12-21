@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
-var {Route, Switch} = ReactRouter; 
+var {Route, Switch} = ReactRouter;
 var SearchBox = require('./SearchBox');
 var Forecast = require('./Forecast');
 var Detail = require('./Detail');
@@ -16,7 +16,7 @@ class App extends React.Component {
 						return (
 							<div className="header-bar">
 								<h1 className="title">Weather App</h1>
-								<SearchBox direction="row" 
+								<SearchBox direction="row"
 									onSubmitButton={function (city) {
 										props.history.push({
 											pathname: '/forecast',
@@ -28,13 +28,11 @@ class App extends React.Component {
 					}} />
 					<Switch>
 						<Route exact path="/" render={function (props) {
-							// Using render to inline component 
+							// Using render to inline component
 							// This way we can trigger a redirect if button
 							// is clicked on
 							return (
-								<section className="home-container" 
-									style={{backgroundImage: 
-										'url(\'app/images/pattern.svg\')'}}>
+								<section className="home-container">
 									<h1 className="header">
 										Enter a City and State
 									</h1>
